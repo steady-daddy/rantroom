@@ -28,25 +28,25 @@ public class RantController {
 
 	// Get All Rants
 	@GetMapping("/rants")
-	public List<Rants> getAllNotes() {
+	public List<Rants> getAllRants() {
 	    return rantRepository.findAll();
 	}
 
     // Create a new Rant
 	@PostMapping("/rants")
-	public Rants createNote(@Valid @RequestBody Rants rant) {
+	public Rants createRant(@Valid @RequestBody Rants rant) {
 	    return rantRepository.save(rant);
 	}
 
     // Get a Single Rant
 	@GetMapping("/rants/{id}")
-	public Rants getNoteById(@PathVariable(value = "id") Long rantId) {
+	public Rants getRantById(@PathVariable(value = "id") Long rantId) {
 	    return rantRepository.findById(rantId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Rant", "id", rantId));
 	}
     // Update a Rant
 	@PutMapping("/rants/{id}")
-	public Rants updateNote(@PathVariable(value = "id") Long rantId,
+	public Rants updateRant(@PathVariable(value = "id") Long rantId,
 	                                        @Valid @RequestBody Rants rantDetails) {
 
 		Rants rant = rantRepository.findById(rantId)
@@ -59,8 +59,8 @@ public class RantController {
 	    return updatedRant;
 	}
     // Delete a Rant
-	@DeleteMapping("/notes/{id}")
-	public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long rantId) {
+	@DeleteMapping("/rants/{id}")
+	public ResponseEntity<?> deleteRant(@PathVariable(value = "id") Long rantId) {
 		Rants rant = rantRepository.findById(rantId)
 	            .orElseThrow(() -> new ResourceNotFoundException("Rant", "id", rantId));
 
