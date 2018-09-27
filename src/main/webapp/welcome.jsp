@@ -23,29 +23,50 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3">
-            <h3 class="home-h2" style="text-align: left;">RantRoom</h3>
+    <body>
+        <header id="header">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo2.png" /></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+                      <ul class="nav navbar-nav navbar-right">
+                            <li><a href="${contextPath}/login">Login</a></li>
+                            <li><a id="signup-link" class="btn btn-default home-links" href="${contextPath}/registration">Sign Up</a></li>
+                      </ul>
+                    </div><!-- /navbar-collapse -->
+                </div><!-- /container -->
+            </nav>
+        </header>
+        <div class="container" id="sub-content">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3 class="home-h2" style="text-align: left;">RantRoom</h3>
+                </div>
+                <div class="col-sm-3 col-sm-offset-6">
+                    <a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a>
+                </div>    
+            </div>    
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+
+                <h3>Welcome ${pageContext.request.userPrincipal.name}</h3>
+
+
+            </c:if>
+
         </div>
-        <div class="col-sm-3 col-sm-offset-6">
-            <a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a>
-        </div>    
-    </div>    
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-
-        <h3>Welcome ${pageContext.request.userPrincipal.name}</h3>
-        
-
-    </c:if>
-
-</div>
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
+        <!-- /container -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+    </body>
 </html>

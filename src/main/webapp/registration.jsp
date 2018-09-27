@@ -15,7 +15,7 @@
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+<!--        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
         <!--web-fonts-->
         <link href='//fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
         <!--//web-fonts-->
@@ -28,12 +28,28 @@
     </head>
 
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-                    <h2 class="home-h2">Welcome to RantRoom</h2>
-                </div>
-            </div>
+        <header id="header">
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo2.png" /></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
+                      <ul class="nav navbar-nav navbar-right">
+                            <li><a href="${contextPath}/login">Login</a></li>
+                            <li><a id="signup-link" class="btn btn-default home-links" href="${contextPath}/registration">Sign Up</a></li>
+                      </ul>
+                    </div><!-- /navbar-collapse -->
+                </div><!-- /container -->
+            </nav>
+        </header>
+        <div class="container" id="sub-content">            
             <!--signin-form-->
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
