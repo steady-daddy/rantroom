@@ -1,2 +1,13 @@
-# rantroom
-The idea is to create a public forum for people to rant about anything under the sun.
+#
+
+## Prerequisites
+- JDK 1.7 or later
+- Maven 3 or later
+
+## Stack
+- Spring Security
+- Spring Boot
+- Spring Data JPA
+- Maven
+- JSP
+- MYSQL
