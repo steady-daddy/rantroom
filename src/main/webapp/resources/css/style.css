@@ -1,11 +1,14 @@
 html{
-	 font-family:sans-serif;
+	 font-family: 'Montserrat', sans-serif;
+/*
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%
+*/
 }
 #sub-content{
     background:url(../images/bg.jpg);
-    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 
 #header{
@@ -20,24 +23,24 @@ html{
     margin:10px 0px !important
 }
 #header .logo{
-/*    display:block;*/
-    max-width:150px
+    max-width:150px;
 }
-#header .navbar{
+#header{
     margin-bottom:0;
     border:none;
-/*    border-bottom:none;*/
-/*    -moz-border-radius:0;*/
-/*    -webkit-border-radius:0;*/
-/*    border-radius:0;*/
-    background-color: #fff;
+}
+#menu{
+    font-size:18px;
+    font-weight:500;
+    padding-bottom:11px;
+    padding-top:40px
+}
+.navbar{
+    background-color: #fff; 
+    padding: 25px 0;   
 }
 .navbar-nav>li>a{
-    color:#555;
-    font-size:13px;
-    font-weight:600;
-    padding-bottom:11px;
-    padding-top:10px
+    
 }
 ul.nav.navbar-nav{
     padding:8px 15px 5px
@@ -54,12 +57,9 @@ h1 {
 /*--signin-form--*/
 
 .form-body {
-    background-color: #fff;    
-    background-size:auto;
+    background-color: #fff;
     padding: 2.2em 2.2em;
     padding-bottom: 1em;
-/*	text-align: left;*/
-    margin: 12px auto;    
     border-radius: 5px;
     box-shadow: 0 1px 3px #ccc;   
     
@@ -229,9 +229,11 @@ h5 {
 
 }
 @media(max-width:1280px){
+/*
 h1 {
     font-size: 2.5em;
 }
+*/
 
 }
 @media(max-width:1080px){
@@ -244,9 +246,11 @@ h1 {
 }*/
 }
 @media(max-width:991px){
+/*
 .form-body {
     padding: 1.7em 1.7em;
 }
+*/
 }
 @media(max-width:900px){
 
@@ -259,10 +263,15 @@ h1 {
 */
 }
 @media(max-width:768px){
+    .fh5co-nav .menu-1, .fh5co-nav .menu-2 {
+    display: none;
+  }
+/*
 .form-body {
     padding-left:60px;
     padding-right: 60px;
 }
+*/
 }
 @media(max-width:736px){
 

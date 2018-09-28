@@ -27,25 +27,59 @@
     <body>
 		<header id="header">
             <nav class="navbar navbar-default">
-                <div class="container">
-                    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                      </button>
-                      <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo2.png" /></a>
-                    </div>
-                    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">
-                      <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${contextPath}/login">Login</a></li>
-                            <li><a id="signup-link" class="btn btn-default home-links" href="${contextPath}/registration">Sign Up</a></li>
-                      </ul>
-                    </div><!-- /navbar-collapse -->
-                </div><!-- /container -->
-            </nav>
-        </header>
+				<div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="navbar-header">
+                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                              </button>
+                              <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo2.png" /></a>
+                            </div>
+                        </div>    
+                        <div class="col-sm-9">
+                            <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
+                                <div class="col-sm-8" id="menu">    
+                                      <ul class="nav navbar-nav">
+                                        <li><a href="home.html">Home</a></li>
+                                        <li></li>
+                                        <li><a href="#">Rants</a></li> 
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Politics</a></li>
+                                                    <li><a href="#">Technology</a></li>
+                                                    <li><a href="#">Sports</a></li>
+                                                    <li><a href="#">Social Issues</a></li>
+                                                    <li><a href="#">Social Media</a></li>
+                                                    <li><a href="#">Work</a></li>
+                                                    <li><a href="#">Religion</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">About Rant Room</a></li>
+                                                    <li><a href="#">Rules of Rant Room</a></li> 
+                                            </ul>
+                                        </li>  
+                                      </ul>
+                                </div><!--inner col-sm-8--> 
+                                <div class="col-sm-4">                                    
+                                      <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="${contextPath}/login">Login</a></li>
+                                            <li><a id="signup-link" class="btn btn-default home-links" href="${contextPath}/registration">Sign Up</a></li>
+                                      </ul>     
+                                </div><!--inner col-sm-4--> 
+                            </div><!--inner-row-->
+                        </div><!--outer col-sm-8-->   
+                    </div><!--outer-row-->    
+                </div><!--container-->
+			</nav>
+		</header>
 
         <div id="sub-content" id="sub-content">
             <div class="container">
