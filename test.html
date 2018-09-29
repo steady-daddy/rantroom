@@ -1,0 +1,79 @@
+// --
+// Setup modules with mixins
+// --
+
+mixin share
+  .tile-sharelinks
+    a.tile-sharelinks-link(href="")
+      | Share this
+      
+mixin tile
+  .tile
+    figure.tile-img
+      img(src="http://photos-b.ak.instagram.com/hphotos-ak-prn/10261246_483443708456209_338085288_n.jpg")
+    .tile-contents
+      h2.tile-heading Heading
+      p
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam perspiciatis possimus odio reiciendis quasi quae reprehenderit ex doloribus autem modi. Nisi quos quas ad ea cupiditate molestias ratione labore asperiores
+     +share
+     
+mixin tile-alt
+  .tile
+    figure.tile-img
+      img(src="http://photos-b.ak.instagram.com/hphotos-ak-frc/10268835_1422194731376545_1047017330_n.jpg")
+    .tile-contents
+      h2.tile-heading Another heading
+      p
+        | Magnam perspiciatis possimus odio reiciendis quasi quae reprehenderit ex doloribus autem modi.
+        
+      p
+        | Nisi quos quas ad ea cupiditate molestias ratione labore asperiores
+     +share
+     
+mixin tile-alt2
+  .tile
+    figure.tile-img
+      img(src="http://d.alistapart.com/_made/d/ALA377_desforservices_300_348_655_60.jpg")
+    .tile-contents
+      h2.tile-heading Some other heading that is a little longer
+      p
+        | Quasi quae reprehenderit ex doloribus autem modi. Nisi quos quas ad ea cupiditate molestias ratione labore asperiores
+     +share
+     
+mixin tile-quote
+  .tile.tile--quote
+    .tile-contents
+      h2.tile-heading Heading
+      blockquote
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam perspiciatis possimus odio reiciendis quasi quae reprehenderit ex doloribus autem modi. Nisi quos quas ad ea cupiditate molestias ratione labore asperiores
+     +share
+     
+mixin tile-quote-alt
+  .tile.tile--quote
+    .tile-contents
+      h2.tile-heading Heading
+      blockquote
+        p
+          | Nisi quos quas ad ea cupiditate molestias ratione labore asperiores
+     +share
+     
+// --
+// Lay the page out
+// --
+
+.tile-container
+  +tile
+  +tile-quote
+  +tile-alt
+  +tile-quote-alt
+  +tile
+  +tile-alt
+  +tile-quote
+  +tile
+  +tile-alt
+  +tile-quote-alt
+  +tile-quote
+  +tile-alt
+  +tile-quote-alt
+  +tile
