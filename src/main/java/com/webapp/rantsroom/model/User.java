@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends AuditModel{
     private Long id;
     private String username;
     private String firstname;
@@ -17,8 +17,6 @@ public class User {
     private String email;
     private boolean active;
     private boolean email_confirmed;
-    private Date createdAt;
-    private Date updated_at;
     private String confirmationToken;
     private Set<Role> roles;
     
@@ -94,23 +92,6 @@ public class User {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdated_at() {
-		return updated_at;
-	}
-
-	public void setUpdated_at(Date updated_at) {
-		this.updated_at = updated_at;
-	}
-
 	public String getConfirmationToken() {
 		return confirmationToken;
 	}
@@ -129,12 +110,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", password=" + password + ", passwordConfirm=" + passwordConfirm + ", email=" + email + ", active="
-				+ active + ", email_confirmed=" + email_confirmed + ", createdAt=" + createdAt + ", updated_at="
-				+ updated_at + ", confirmationToken=" + confirmationToken + "]";
-	}
+	
 }

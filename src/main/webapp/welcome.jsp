@@ -104,8 +104,11 @@
                     <div class="col-sm-3">
                         <h3 class="home-h2" style="text-align: left;">RantRoom</h3>
                     </div>
-                    <div class="col-sm-3 col-sm-offset-6">
-                        <a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a>
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <ul class="nav navbar-nav navbar-right menu">
+                            <li><a href="${contextPath}/post">Create Rant</a></li>
+                            <li><a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a></li>
+                        </ul>
                     </div>    
                 </div>    
                 <c:if test="${pageContext.request.userPrincipal.name != null}">

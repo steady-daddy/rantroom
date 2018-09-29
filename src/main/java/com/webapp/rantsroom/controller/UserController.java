@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.webapp.rantsroom.model.User;
 import com.webapp.rantsroom.service.EmailService;
@@ -39,7 +40,7 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model, HttpServletRequest request) {
-    	System.out.println("REGIS: POST");
+    	
     	userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
@@ -65,7 +66,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(String error, Model model, String logout) {
     	
-    	model.addAttribute("userLogin", new User());
+    	//model.addAttribute("userLogin", new User());
     	if (error != null)
             model.addAttribute("error", "Your username/password is invalid.");
 

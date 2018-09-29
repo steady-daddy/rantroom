@@ -82,25 +82,62 @@
 		</header>
         
         <div id="main">
-            <div id="sub-content" id="sub-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3">
-    <!--                        <h3 class="home-h2" style="text-align: left;">RantRoom</h3>-->
-                        </div>
-                    </div>    
-                    <div class="row">
-                        <div class="col-sm-4 col-sm-offset-4">
-    <!--
-                            <a href="${contextPath}/registration" class="btn btn-default home-links" style="margin-right:30px;">NEW MEMBER</a>
-                            <a href="${contextPath}/login" class="btn btn-default home-links">EXISTING MEMBER</a>
-    -->
-                        </div>
-                        <!--<div class="col-sm-2 col-sm-offset-2">
-                             <a href="${contextPath}/registration" class="home-links" style="">NEW MEMBER</a>
-                        </div>-->
-                    </div>                   
-                </div><!-- /container -->
+            <div class="container" id="sub-content">
+                <div class="row">
+                    <div>
+                        <p id="intro">Welcome to RantRoom. A a public forum for people to rant about anything under the sun. Here, you can speak your heart out with complete anonymity. So, what are you waiting for? Sign up instantly and start ranting.</p>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-4">                        
+				
+				        <div id="confessions-list" class="list">
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-mercurial-vapor-14649">Rant 1</a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-i-hate-myself-17613">Rant 2</a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-sexist-dad-13094">Rant 3</a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-beziez-13588">Rant 4</a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-there-is-no-god-95547">Rant 5</a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-you-dumb-motherfucker-28067">Rant 6</a>
+                                    </h3><p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="https://rantrampage.com/story-my-cousin-12506">Rant 7 </a></h3>
+                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                        </div><!-- rants-list -->
+                    </div> <!-- col-sm-8 -->   
+                </div> <!-- row -->   
+            </div><!-- /container -->
             </div><!-- main -->
 
             <!-- footer -->

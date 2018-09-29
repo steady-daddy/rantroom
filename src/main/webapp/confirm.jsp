@@ -111,17 +111,7 @@
                         We have sent you a confirmation mail. Kindly click on the link given in mail to get verified and get started.</p>
                         <p><a href="home.jsp">Return to Homepage</a></p>
                     </div>
-                </div>
-
-                <!--<c:if test="${pageContext.request.userPrincipal.name != null}">
-                    <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    </form>
-
-                    <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
-                </c:if>-->
-
+                </div>                
             </div>
             <!-- /container -->
             <!-- footer -->
