@@ -28,10 +28,9 @@ public class PostValidator implements Validator{
         
       //Post description validation
   		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "rant", "error.rantEmpty");
-          if (post.getTitle().length() > 999) {
+          if (post.getRant().length() > 999) {
               errors.rejectValue("rant", "Size.rant.title");
-          }         
-        		  
+          }                		  
 	}
 
 }

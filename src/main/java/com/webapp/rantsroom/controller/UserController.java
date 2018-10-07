@@ -60,7 +60,7 @@ public class UserController {
 		    //Sending verification token via mail
 		    sendConfirmationMail(request,userForm);
 		    
-		    return "redirect:/users/confirm";
+		    return "redirect:/confirm";
         }
     }
     

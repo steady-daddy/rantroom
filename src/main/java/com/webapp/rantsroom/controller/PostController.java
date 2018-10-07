@@ -5,6 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,8 +41,14 @@ public class PostController {
     }
     
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String createPost(@ModelAttribute("postForm") Post postform,BindingResult bindingResult, Model model) {
+    public String createPost(@ModelAttribute("postForm") Post postform,BindingResult bindingResult, Model model, @AuthenticationPrincipal UserDetails currentUser) {
     	
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//    	System.out.println("CURRENT USER: " + auth.getDetails());
+//    	System.out.println("CURRENT PRINCIPAL: " + auth.getPrincipal());
+//    	System.out.println("CURRENT AUTH: " + auth.getAuthorities());
+//    	System.out.println("CURRENT CRED: " + auth.getPrincipal());
+    	System.out.println("CURRENT CRED: " + currentUser.getUsername());
     	postValidator.validate(postform, bindingResult);
     	
     	if (bindingResult.hasErrors()) {
