@@ -45,17 +45,21 @@ public class Post extends AuditModel {
 	
 	private boolean deleted;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-    @JsonIdentityReference(alwaysAsId=true)
-    @JsonProperty("user_id")
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+//    @JsonIdentityReference(alwaysAsId=true)
+//    @JsonProperty("id")
+	
+	
     private User user;
 	
 	public Long getId() {
 		return id;
 	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
 	public User getUser() {
 		return user;
 	}

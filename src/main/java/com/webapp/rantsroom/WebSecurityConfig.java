@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import com.webapp.rantsroom.model.Role;
 
+// TODO: FIgure out its functionality
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -34,14 +35,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration","/login","/confirm", "/verify","/postsuccess").permitAll()
-                    .anyRequest().authenticated()
+                    .antMatchers("/resources/**","/","/home","/confirm","/verify").permitAll()
+                    .antMatchers("/users/**").authenticated()
+                    //.antMatchers("/post").authenticated()
+                    //.antMatchers("/postsuccess").hasAnyRole()
+//                    .antMatchers("/post").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+//                    .antMatchers("/postsuccess").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                    .anyRequest().permitAll()
                     .and()
                 .formLogin()
                     .loginPage("/login")
-                    .loginProcessingUrl("/login")
-                    .defaultSuccessUrl("/welcome")
-                    .defaultSuccessUrl("/post")
+                    .defaultSuccessUrl("/users/welcome")                    
                     .permitAll()
                     .and()
                 .logout()

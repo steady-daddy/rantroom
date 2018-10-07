@@ -22,6 +22,7 @@ import com.webapp.rantsroom.service.UserService;
 import com.webapp.rantsroom.validator.UserValidator;
 
 @Controller
+//@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -59,7 +60,7 @@ public class UserController {
 		    //Sending verification token via mail
 		    sendConfirmationMail(request,userForm);
 		    
-		    return "redirect:/confirm";
+		    return "redirect:/users/confirm";
         }
     }
     
@@ -103,9 +104,9 @@ public class UserController {
         	return "login";
     }*/
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/welcome", method = RequestMethod.GET)
     public String welcome(Model model) {	
-        return "welcome";
+        return "users/welcome";
     }
     
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)

@@ -109,7 +109,6 @@
             <div class="container" id="sub-content">
                 <div class="row">
                     <div class="col-sm-4 col-sm-offset-4">
-    <!--                    <h2 class="home-h2">Welcome to RantRoom</h2>-->
                     </div>
                 </div>
                 <div class="row">                

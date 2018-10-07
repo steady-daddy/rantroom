@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -87,10 +88,12 @@
                                       </ul>
                                 </div><!--inner col-sm-8--> 
                                 <div class="col-sm-4">                                    
+<!--
                                       <ul class="nav navbar-nav navbar-right menu">
                                             <li><a href="${contextPath}/login">Login</a></li>
                                             <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
                                       </ul>     
+-->
                                 </div><!--inner col-sm-4--> 
                             </div><!--inner-row-->
                         </div><!--outer col-sm-8-->   
@@ -106,7 +109,7 @@
                     </div>
                     <div class="col-sm-4 menu">
                         <ul class="">
-                            <li><a href="${contextPath}/welcome" style="text-align: left">Cancel</a></li>
+                            <li><a href="${contextPath}/users/welcome" style="text-align: left">Cancel</a></li>
                             <li><a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a></li>
                         </ul>
                     </div>    
@@ -123,7 +126,7 @@
                                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                                 <form:input type="text" path="title" class="form-control" autofocus="true"></form:input>
                                                 <form:errors path="title"></form:errors>
-                                                <span class="help-block">Give your rant a short descriptive Title.</span>                                                
+                                                <span>Give your rant a short descriptive Title.</span>           
                                             </div>    
                                         </spring:bind>    
                                     </div>
@@ -131,14 +134,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="confessText" class="control-label">Rant</label>
+                                <label>Rant</label>
                                 <spring:bind path="rant">
                                     <form:textarea path="rant" class="form-control" required="required" rows="12"></form:textarea>
                                     <form:errors path="rant"></form:errors>
-                                    <span class="help-block">Text Only. HTML/Code will be saved as plain text.</span>                                    
+                                    <span>Text Only. HTML/Code will be saved as plain text.</span>                                    
                                 </spring:bind>    
                             </div> 
-                            <button type="input" name="submit" value="newConfession" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Submit Your Rant</button>
+                            <button type="input" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Submit Your Rant</button>
                         </form:form>
                     </div><!--rant title -->                      
                 </div><!--rant desc -->

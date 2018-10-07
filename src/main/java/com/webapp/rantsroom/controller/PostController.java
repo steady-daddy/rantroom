@@ -20,6 +20,7 @@ import com.webapp.rantsroom.validator.PostValidator;
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/users")
 public class PostController {
 
     @Autowired
@@ -32,7 +33,7 @@ public class PostController {
     @RequestMapping(value = "/post", method = RequestMethod.GET)
     public String createPost(Model model) {
     	model.addAttribute("postForm", new Post());    	
-        return "post";        		
+        return "users/post";        		
     }
     
     @RequestMapping(value = "/post", method = RequestMethod.POST)
@@ -41,18 +42,18 @@ public class PostController {
     	postValidator.validate(postform, bindingResult);
     	
     	if (bindingResult.hasErrors()) {
-            return "post";
+            return "users/post";
         }
     	else {
 	    	postService.save(postform);
-	        return "redirect:/postSuccess";
+	        return "redirect:/users/postsuccess";
     	}
         		
     }
-    @RequestMapping(value = "/postSuccess", method = RequestMethod.GET)
+    @RequestMapping(value = "/postsuccess", method = RequestMethod.GET)
     public String success(Model model) {   	
     	model.addAttribute("verifyPost", "Success!  Your Rant is posted.");
-        return "postSuccess";
+        return "/users/postsuccess";
     }
 
     /*@RequestMapping(value = "/posts/{postId}", method = RequestMethod.PUT)

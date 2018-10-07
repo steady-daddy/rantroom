@@ -8,7 +8,8 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User extends AuditModel{
-    private Long id;
+		
+    private Long id;	
     private String username;
     private String firstname;
     private String lastname;
@@ -19,9 +20,18 @@ public class User extends AuditModel{
     private boolean email_confirmed;
     private String confirmationToken;
     private Set<Role> roles;
+    private Set<Post> posts;    
     
-    
-    @Id
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
