@@ -3,12 +3,15 @@ package com.webapp.rantsroom.model;
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User extends AuditModel{
-		
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;	
     private String username;
     private String firstname;
@@ -19,20 +22,24 @@ public class User extends AuditModel{
     private boolean active;
     private boolean email_confirmed;
     private String confirmationToken;
-    private Set<Role> roles;
-    private Set<Post> posts;    
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public Set<Post> getPosts() {
+    @OneToMany(targetEntity=Post.class, mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Post> posts;    
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "User_ID"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+    
+        
+    
+	public List<Post> getPosts() {
 		return posts;
 	}
 
-	public void setPosts(Set<Post> posts) {
+	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	
     public Long getId() {
         return id;
     }
@@ -108,11 +115,8 @@ public class User extends AuditModel{
 
 	public void setConfirmationToken(String confirmationToken) {
 		this.confirmationToken = confirmationToken;
-	}  
-
-	    
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	}
+	
     public Set<Role> getRoles() {
         return roles;
     }

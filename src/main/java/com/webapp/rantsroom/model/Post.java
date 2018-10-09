@@ -1,5 +1,6 @@
 package com.webapp.rantsroom.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,60 +17,38 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 @Entity
 @Table(name = "posts")
-public class Post extends AuditModel {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Post extends AuditModel {	
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private Long id;	
 	@NotNull
     @Size(max = 100)
-    @Column(unique = true)
-    private String title;
-	
+    private String title;	
 	@NotNull
     @Lob
-	private String rant;
-	
+	private String rant;	
 	private boolean deleted;
-	
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-//    @JsonIdentityReference(alwaysAsId=true)
-//    @JsonProperty("id")
-	
-	
-    private User user;
-	
-	public Long getId() {
-		return id;
-	}
+
+    //@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "User_ID") 
+    private User user;
+	  
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public Long getId() {
+		return id;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
 	public String getTitle() {
 		return title;
 	}
@@ -87,5 +66,10 @@ public class Post extends AuditModel {
 	}
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", title=" + title + ", rant=" + rant + ", deleted=" + deleted + ", user=" + user
+				+ "]";
 	}	
 }

@@ -48,6 +48,7 @@ public class PostController {
 //    	System.out.println("CURRENT PRINCIPAL: " + auth.getPrincipal());
 //    	System.out.println("CURRENT AUTH: " + auth.getAuthorities());
 //    	System.out.println("CURRENT CRED: " + auth.getPrincipal());
+    	
     	System.out.println("CURRENT CRED: " + currentUser.getUsername());
     	postValidator.validate(postform, bindingResult);
     	
@@ -55,6 +56,8 @@ public class PostController {
             return "users/post";
         }
     	else {
+
+        	System.out.println("POST OBJECT data: " + postform.toString());
 	    	postService.save(postform);
 	        return "redirect:/users/postsuccess";
     	}
