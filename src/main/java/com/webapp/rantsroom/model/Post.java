@@ -32,9 +32,8 @@ public class Post extends AuditModel {
 	private String rant;	
 	private boolean deleted;
 
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "User_ID") 
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
     private User user;
 	  
 	public User getUser() {

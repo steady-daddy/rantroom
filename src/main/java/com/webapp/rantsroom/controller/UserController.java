@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webapp.rantsroom.model.User;
+import com.webapp.rantsroom.repository.UserRepository;
 import com.webapp.rantsroom.service.EmailService;
 import com.webapp.rantsroom.service.SecurityService;
 import com.webapp.rantsroom.service.UserService;
@@ -26,6 +29,8 @@ import com.webapp.rantsroom.validator.UserValidator;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private EmailService emailService;    
     @Autowired
@@ -53,7 +58,7 @@ public class UserController {
 		    userForm.setEmail_confirmed(false);
 		    
 		    // Generate random 36-character string token for confirmation link
-		    userForm.setConfirmationToken(UUID.randomUUID().toString());
+		    //userForm.setConfirmationToken(UUID.randomUUID().toString());
 		    
 		    userService.save(userForm);
 		    
@@ -65,7 +70,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(String error, Model model, String logout) {
+    public String login(String error, Model model, String logout, String delete, @AuthenticationPrincipal UserDetails currentUser) {
     	
     	//model.addAttribute("userLogin", new User());
     	if (error != null)
@@ -75,7 +80,11 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 //        if(!(userLogin.isEmail_confirmed())) {
 //        	model.addAttribute("error", "Oops! Looks like you haven't verified your email yet.Please check your mail box.");
-
+        if(delete != null) {
+        	User user = userService.findByUsername(currentUser.getUsername());
+        	userRepository.delete(user);
+        	model.addAttribute("message", "Your account has been deleted successfully.");
+        }
         return "login";
     }
     

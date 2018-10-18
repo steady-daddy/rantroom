@@ -16,13 +16,30 @@
         <title>Home - RantRoom</title>
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<!--        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!--web-fonts-->
+        <link href='//fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
+        <!--favicons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="${contextPath}/resources/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="${contextPath}/resources/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="${contextPath}/resources/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="${contextPath}/resources/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="${contextPath}/resources/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="${contextPath}/resources/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="${contextPath}/resources/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="${contextPath}/resources/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="${contextPath}/resources/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="${contextPath}/resources/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="${contextPath}/resources/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="${contextPath}/resources/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="${contextPath}/resources/favicons/favicon-16x16.png">
+        <link rel="manifest" href="${contextPath}/resources/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <!--favicons-end -->
+        
     </head>
     <body>
 		<header id="header">
@@ -137,36 +154,35 @@
                         </div><!-- rants-list -->
                     </div> <!-- col-sm-8 -->   
                 </div> <!-- row -->   
-            </div><!-- /container -->
-            </div><!-- main -->
+            </div><!-- /container -->        
 
             <!-- footer -->
             <footer id="footer" class="text-center">
-          <div class="container social">
+              <div class="container social">
 
-            <div class="col-sm-12">                
-              <a href="#" class="icon-circle fb" target="_blank">
-                <img class="logo" alt="Facebook" src="./resources/social/facebook_transparent-1c6a690dcde061958f50f712404c764613cc193d3f69e81734c8c9a7f36131e4.png" />
-              </a>
+                <div class="col-sm-12">                
+                  <a href="#" class="icon-circle fb" target="_blank">
+                    <img class="logo" alt="Facebook" src="${contextPath}/resources/social/facebook_transparent-1c6a690dcde061958f50f712404c764613cc193d3f69e81734c8c9a7f36131e4.png" />
+                  </a>
 
-              <a href="#" class="icon-circle tw" target="_blank">
-                <img class="logo" alt="Twitter" src="./resources/social/twitter_transparent-39f60ddc31bce0d3e3d6ae72af7fbe74dc95e01b7d7a6f66cc38efabda3bb6da.png" />
-              </a>
+                  <a href="#" class="icon-circle tw" target="_blank">
+                    <img class="logo" alt="Twitter" src="${contextPath}/resources/social/twitter_transparent-39f60ddc31bce0d3e3d6ae72af7fbe74dc95e01b7d7a6f66cc38efabda3bb6da.png" />
+                  </a>
 
-              <a href="#" class="icon-circle gl" target="_blank">
-                <img class="logo" alt="Google Plus" src="./resources/social/gplus_transparent-fab632559c47bada047b0ff2cb7b8880a10836d08db04c7cdae2e3d3abe474e1.png" />
-              </a>
-                
-                <a href="#" class="icon-circle pt" target="_blank">
-                <img class="logo" alt="Pinterest" src="./resources/social/pinterest_transparent-a58a9baa98ec9a2e4fed6d4ab7ffdb69bc607c82649a486544b2b5dab03364ef.png" />
-               </a>
-            </div>
+                  <a href="#" class="icon-circle gl" target="_blank">
+                    <img class="logo" alt="Google Plus" src="${contextPath}/resources/social/gplus_transparent-fab632559c47bada047b0ff2cb7b8880a10836d08db04c7cdae2e3d3abe474e1.png" />
+                  </a>
 
-          </div><!--social-->
+                    <a href="#" class="icon-circle pt" target="_blank">
+                    <img class="logo" alt="Pinterest" src="${contextPath}/resources/social/pinterest_transparent-a58a9baa98ec9a2e4fed6d4ab7ffdb69bc607c82649a486544b2b5dab03364ef.png" />
+                   </a>
+                </div>
 
-          <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
+              </div><!--social-->
+
+              <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
-        </div>    
+        </div><!-- main -->   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>

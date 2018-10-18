@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
 public class User extends AuditModel{
 	
 	@Id
@@ -23,12 +22,14 @@ public class User extends AuditModel{
     private boolean email_confirmed;
     private String confirmationToken;
     
-    @OneToMany(targetEntity=Post.class, mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    private List<Post> posts;    
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "User_ID"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    private List<Post> posts;
     
+    @ManyToMany
+    @JoinTable(name = "user_role", 
+    joinColumns = @JoinColumn(name = "User_ID"), 
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;    
         
     
 	public List<Post> getPosts() {

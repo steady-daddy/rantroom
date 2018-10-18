@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.webapp.rantsroom.model.Post;
 import com.webapp.rantsroom.model.User;
 import com.webapp.rantsroom.repository.PostRepository;
 import com.webapp.rantsroom.service.PostService;
+import com.webapp.rantsroom.service.UserService;
 import com.webapp.rantsroom.validator.PostValidator;
 
 import javax.validation.Valid;
@@ -31,9 +33,11 @@ public class PostController {
     private PostService postService;
     
     @Autowired
-    private PostValidator postValidator;
+    private UserService userService;
     
-   
+    @Autowired
+    private PostValidator postValidator;
+     
     @RequestMapping(value = "/post", method = RequestMethod.GET)
     public String createPost(Model model) {
     	model.addAttribute("postForm", new Post());    	
@@ -43,7 +47,7 @@ public class PostController {
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String createPost(@ModelAttribute("postForm") Post postform,BindingResult bindingResult, Model model, @AuthenticationPrincipal UserDetails currentUser) {
     	
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	//Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //    	System.out.println("CURRENT USER: " + auth.getDetails());
 //    	System.out.println("CURRENT PRINCIPAL: " + auth.getPrincipal());
 //    	System.out.println("CURRENT AUTH: " + auth.getAuthorities());
@@ -52,13 +56,15 @@ public class PostController {
     	System.out.println("CURRENT CRED: " + currentUser.getUsername());
     	postValidator.validate(postform, bindingResult);
     	
-    	if (bindingResult.hasErrors()) {
+    	if (bindingResult.hasErrors())
             return "users/post";
-        }
+        
     	else {
 
         	System.out.println("POST OBJECT data: " + postform.toString());
-	    	postService.save(postform);
+        	User user = userService.findByUsername(currentUser.getUsername());
+        	postform.setUser(user);
+	    	postService.save(postform);	    	
 	        return "redirect:/users/postsuccess";
     	}
         		
@@ -69,6 +75,23 @@ public class PostController {
         return "/users/postsuccess";
     }
 
+    
+    public static Long getCurrentUserId() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        Authentication authentication = securityContext.getAuthentication();
+        String id = null;
+        if (authentication != null)
+            if (authentication.getPrincipal() instanceof UserDetails)
+                id = ((UserDetails) authentication.getPrincipal()).getUsername();
+            else if (authentication.getPrincipal() instanceof String)
+                id = (String) authentication.getPrincipal();
+        try {
+            return Long.valueOf(id != null ? id : "1"); //anonymoususer
+        } catch (NumberFormatException e) {
+            return 1L;
+        }
+    }
+    
     /*@RequestMapping(value = "/posts/{postId}", method = RequestMethod.PUT)
     public String updatePost(@PathVariable Long postId, @Valid @RequestBody Post postRequest) {
          postRepository.findById(postId).map(post -> {
