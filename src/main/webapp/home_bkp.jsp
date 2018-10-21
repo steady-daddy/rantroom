@@ -13,10 +13,13 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Rant Posted</title>
+        <title>Home - RantRoom</title>
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<!--        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
+        <!--web-fonts-->
+        <link href='//fonts.googleapis.com/css?family=Jura:400,300,500,600' rel='stylesheet' type='text/css'>
         <!--favicons -->
         <link rel="apple-touch-icon" sizes="57x57" href="${contextPath}/resources/favicons/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="${contextPath}/resources/favicons/apple-icon-60x60.png">
@@ -36,16 +39,12 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <!--favicons-end -->
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-</head>
+        
+    </head>
     <body>
-        <header id="header">
-            <nav class="navbar navbar-default">
-				<div class="container">
+        <div class="container-fluid" style="background-color: #000">
+		  <header id="header">
+                <nav class="navbar">				
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="navbar-header">
@@ -55,15 +54,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="../home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
+                              <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
                             </div>
                         </div>    
                         <div class="col-sm-9">
                             <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="../home">Home</a></li>
-                                        <li></li>
+                                        <li><a href="home.jsp">Home</a></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
@@ -87,44 +85,85 @@
                                       </ul>
                                 </div><!--inner col-sm-8--> 
                                 <div class="col-sm-4">                                    
-<!--
                                       <ul class="nav navbar-nav navbar-right menu">
                                             <li><a href="${contextPath}/login">Login</a></li>
                                             <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
                                       </ul>     
--->
                                 </div><!--inner col-sm-4--> 
                             </div><!--inner-row-->
                         </div><!--outer col-sm-8-->   
-                    </div><!--outer-row-->    
-                </div><!--container-->
-			</nav>
-		</header>
+                    </div><!--outer-row-->
+			     </nav>
+		  </header>
+        </div><!--container-->
         <div id="main">
-            <div class="container" id="sub-content">                
+            <div class="container" id="sub-content">
                 <div class="row">
-                    <div class="col-sm-6 col-sm-offset-2">
-
-                        <p>${verifyPost}</p>
-                        <p><a href="welcome.jsp">Return to Timeline</a></p>
-                    </div>
-                    <div class="col-sm-4">
-                        <ul class="nav navbar-nav navbar-right menu">
-                            <li><a href="${contextPath}/users/post">Create Rant</a></li>
-                            <li><a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a></li>
-                            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                                <form id="logoutForm" method="POST" action="${contextPath}/logout">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                </form>
-                            </c:if>
-                        </ul>
-                    </div>  
+                    <div>
+                        <p id="intro">Welcome to RantRoom. A a public forum for people to rant about anything under the sun. Here, you can speak your heart out with complete anonymity. So, what are you waiting for? Sign up instantly and start ranting.</p>
+                    </div>                    
                 </div>
+                <div class="row">
+                    <div class="col-md-9">                        
+				
+				        <div class="list">
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 1</a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 2</a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 3</a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 4</a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 5</a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 6</a>
+                                    </h3><p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                            <div class="list-item" style="">
+                                <div class="list-content">
+                                    <h3><a href="#">Rant 7 </a></h3>
+                                    <p><i class="fa fa-quote-left"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
+                                </div><!-- list-content -->
+                            </div><!--list-item -->
+                        </div><!-- rants-list -->
+                    </div> <!-- col-sm-9 -->
+                    <div class="col-md-3">
+                        <h5>Search Rants</h5>
+                        <form action="#" method="post" class="pb-10">
+                            <div class="search-box">
+                                <input class="search-input" type="text" name="search" required="required" placeholder="Search..." />
+                                <input class="search-button" type="submit" value="Search" />
+                                <i class="search-icon fa fa-search"></i>
+                            </div>
+                        </form>					
+				    </div><!-- col-sm-3 -->
+                </div> <!-- row -->   
+            </div><!-- /container -->        
 
-                
-
-            </div>
-            <!-- /container -->
             <!-- footer -->
             <footer id="footer" class="text-center">
               <div class="container social">
@@ -151,8 +190,8 @@
 
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
-        </div>    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-</body>
+        </div><!-- main -->   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+    </body>
 </html>

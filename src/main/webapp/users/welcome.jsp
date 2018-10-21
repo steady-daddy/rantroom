@@ -55,14 +55,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
+                              <a class="navbar-brand" href="../home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
                             </div>
                         </div>    
                         <div class="col-sm-9">
-                            <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
-                                <div class="col-sm-8 menu">    
+                            <div class="row navbar-collapse collapse menu" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
+                                <div class="col-sm-8">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="home.html">Home</a></li>
+                                        <li><a href="../home">Home</a></li>
                                         <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
@@ -87,8 +87,8 @@
                                       </ul>
                                 </div><!--inner col-sm-8--> 
                                 <div class="col-sm-4">                                    
-                                      <ul class="nav navbar-nav navbar-right menu">
-                                            <li><a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Delete Account</a></li>
+                                      <ul class="nav navbar-nav navbar-right">
+                                            <li><a data-toggle="modal" data-target="#myModal" href="#">Delete Account</a></li>
 <!--                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>-->
                                       </ul>     
                                 </div><!--inner col-sm-4--> 
@@ -117,6 +117,45 @@
                     </form>
                     <h3>Welcome ${pageContext.request.userPrincipal.name}</h3>
                 </c:if>
+                <div class="row">
+                    <div class="col-md-9">
+                        <c:choose>
+                            <c:when test="${posts != null}">
+                                <c:forEach  items="${posts}" var ="post">
+                                    <div class="list">
+                                        <div class="list-item" style="">
+                                            <div class="list-content">
+                                                <h3><a href="#">${post.getTitle()}</a></h3>
+                                                <p><i class="fa fa-quote-left"></i> &nbsp;${post.getRant()}</p>
+                                            </div><!-- list-content -->
+                                        </div><!--list-item -->								
+                                    </div><!-- rants-list -->
+                                </c:forEach> 
+                                <br />
+                            </c:when>    
+                            <c:otherwise>
+                                <div class="list">
+                                        <div class="list-item" style="">
+                                            <div class="list-content">
+                                                <p><i class="fa fa-quote-left"></i> &nbsp;No post found</p>
+                                            </div><!-- list-content -->
+                                        </div><!--list-item -->								
+                                    </div><!-- rants-list -->
+                                <br />
+                            </c:otherwise>
+                        </c:choose>                         
+                    </div> <!-- col-sm-9 -->
+                    <div class="col-md-3">
+                        <h5>Search Rants</h5>
+                        <form action="#" method="post" class="pb-10">
+                            <div class="search-box">
+                                <input class="search-input" type="text" name="search" required="required" placeholder="Search..." />
+                                <input class="search-button" type="submit" value="Search" />
+                                <i class="search-icon fa fa-search"></i>
+                            </div>
+                        </form>					
+				    </div><!-- col-sm-3 -->
+                </div> <!-- row -->
             </div>
             <!-- /container -->
             <footer id="footer" class="text-center">

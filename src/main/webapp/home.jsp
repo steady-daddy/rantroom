@@ -61,7 +61,7 @@
                             <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="home.jsp">Home</a></li>
+                                        <li><a href="home">Home</a></li>
                                         <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
@@ -97,7 +97,6 @@
                 </div><!--container-->
 			</nav>
 		</header>
-        
         <div id="main">
             <div class="container" id="sub-content">
                 <div class="row">
@@ -106,53 +105,43 @@
                     </div>                    
                 </div>
                 <div class="row">
-                    <div class="col-sm-8 col-sm-4">                        
-				
-				        <div id="confessions-list" class="list">
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-mercurial-vapor-14649">Rant 1</a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-i-hate-myself-17613">Rant 2</a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-sexist-dad-13094">Rant 3</a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-beziez-13588">Rant 4</a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-there-is-no-god-95547">Rant 5</a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                    
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-you-dumb-motherfucker-28067">Rant 6</a>
-                                    </h3><p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                            <div class="list-item" style="">
-                                <div class="list-content">
-                                    <h3><a href="https://rantrampage.com/story-my-cousin-12506">Rant 7 </a></h3>
-                                    <p><i class="fa fa-quote-left text-quote-icon"></i> &nbsp;Some ranting about rant so that I learn how to rant and then post more rant and more rant and continue ranting..ha ha ha</p>                                   
-                                </div><!-- list-content -->
-                            </div><!--list-item -->
-                        </div><!-- rants-list -->
-                    </div> <!-- col-sm-8 -->   
+                    <div class="col-md-9">                        
+						<c:choose>
+                            <c:when test="${posts != null}">
+                                <c:forEach  items="${posts}" var ="post">
+                                    <div class="list">
+                                        <div class="list-item" style="">
+                                            <div class="list-content">
+                                                <h3><a href="#">${post.getTitle()}</a></h3>
+                                                <p><i class="fa fa-quote-left"></i> &nbsp;${post.getRant()}</p>
+                                            </div><!-- list-content -->
+                                        </div><!--list-item -->								
+                                    </div><!-- rants-list -->
+                                </c:forEach> 
+                                <br />
+                            </c:when>    
+                            <c:otherwise>
+                                <div class="list">
+                                        <div class="list-item" style="">
+                                            <div class="list-content">
+                                                <p><i class="fa fa-quote-left"></i> &nbsp;No post found</p>
+                                            </div><!-- list-content -->
+                                        </div><!--list-item -->								
+                                    </div><!-- rants-list -->
+                                <br />
+                            </c:otherwise>
+                        </c:choose>
+                    </div> <!-- col-sm-9 -->
+                    <div class="col-md-3">
+                        <h5>Search Rants</h5>
+                        <form action="#" method="post" class="pb-10">
+                            <div class="search-box">
+                                <input class="search-input" type="text" name="search" required="required" placeholder="Search..." />
+                                <input class="search-button" type="submit" value="Search" />
+                                <i class="search-icon fa fa-search"></i>
+                            </div>
+                        </form>					
+				    </div><!-- col-sm-3 -->
                 </div> <!-- row -->   
             </div><!-- /container -->        
 
@@ -183,7 +172,7 @@
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
         </div><!-- main -->   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
 </html>

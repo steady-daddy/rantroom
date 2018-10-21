@@ -56,14 +56,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="../home.jsp"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
+                              <a class="navbar-brand" href="../home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
                             </div>
                         </div>    
                         <div class="col-sm-9">
                             <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="home.html">Home</a></li>
+                                        <li><a href="../home">Home</a></li>
                                         <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
