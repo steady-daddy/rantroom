@@ -1,5 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> <%-- imports function tags from JSTL, prefix "fn"--%>
+<%-- <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %> --%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
@@ -13,7 +15,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Home - RantRoom</title>
+        <title>RantRoom | Home</title>
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <!--        <link href="${contextPath}/resources/css/common.css" rel="stylesheet">-->
@@ -62,7 +64,6 @@
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
                                         <li><a href="home">Home</a></li>
-                                        <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
@@ -87,8 +88,25 @@
                                 </div><!--inner col-sm-8--> 
                                 <div class="col-sm-4">                                    
                                       <ul class="nav navbar-nav navbar-right menu">
-                                            <li><a href="${contextPath}/login">Login</a></li>
-                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
+                                      	<c:choose>
+                                      		<c:when test="${user != null}">
+	                                            <li class="dropdown">
+                                          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${user}<span class="caret"></span></a>
+                                            			<ul class="dropdown-menu sublist" role="menu">
+		                                                    <li><a href="${contextPath}/users/profile">Profile</a></li>		                                                    
+		                                                    <li><a href="${contextPath}/users/profile/settings">Settings</a></li>
+		                                                    <li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li> 
+                                            			</ul>
+                                        		</li>
+                            		            <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                				</form>  	                                            
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<li><a href="${contextPath}/login">Login</a></li>
+	                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
+                                        	</c:otherwise>
+                                        </c:choose>	    
                                       </ul>     
                                 </div><!--inner col-sm-4--> 
                             </div><!--inner-row-->
@@ -100,50 +118,42 @@
         <div id="main">
             <div class="container" id="sub-content">
                 <div class="row">
-                    <div>
-                        <p id="intro">Welcome to RantRoom. A a public forum for people to rant about anything under the sun. Here, you can speak your heart out with complete anonymity. So, what are you waiting for? Sign up instantly and start ranting.</p>
-                    </div>                    
-                </div>
+                   <p id="intro">Welcome to RantRoom. A public forum for people to rant about anything under the sun. Here, you can speak your heart out with complete anonymity. So, what are you waiting for? Sign up instantly and start ranting.</p>                                       
+                </div><!-- row --> 
                 <div class="row">
-                    <div class="col-md-9">                        
-						<c:choose>
-                            <c:when test="${posts != null}">
-                                <c:forEach  items="${posts}" var ="post">
-                                    <div class="list">
-                                        <div class="list-item" style="">
-                                            <div class="list-content">
-                                                <h3><a href="#">${post.getTitle()}</a></h3>
-                                                <p><i class="fa fa-quote-left"></i> &nbsp;${post.getRant()}</p>
-                                            </div><!-- list-content -->
-                                        </div><!--list-item -->								
-                                    </div><!-- rants-list -->
-                                </c:forEach> 
-                                <br />
-                            </c:when>    
-                            <c:otherwise>
-                                <div class="list">
-                                        <div class="list-item" style="">
-                                            <div class="list-content">
-                                                <p><i class="fa fa-quote-left"></i> &nbsp;No post found</p>
-                                            </div><!-- list-content -->
-                                        </div><!--list-item -->								
-                                    </div><!-- rants-list -->
-                                <br />
-                            </c:otherwise>
-                        </c:choose>
-                    </div> <!-- col-sm-9 -->
-                    <div class="col-md-3">
-                        <h5>Search Rants</h5>
-                        <form action="#" method="post" class="pb-10">
-                            <div class="search-box">
-                                <input class="search-input" type="text" name="search" required="required" placeholder="Search..." />
-                                <input class="search-button" type="submit" value="Search" />
-                                <i class="search-icon fa fa-search"></i>
-                            </div>
-                        </form>					
-				    </div><!-- col-sm-3 -->
-                </div> <!-- row -->   
-            </div><!-- /container -->        
+                    <div class="col-md-10 col-sm-12">
+                    	<div class="clearfix">
+                    		<c:choose>
+		                    	<c:when test="${posts != null}">
+		                        	<c:forEach  items="${posts}" var ="post">
+                                        <div class="list col-sm-6 col-md-6">
+                                            <div class="list-item" style="">
+                                                <div class="list-content">
+                                                    <h3 class="page-header" style="text-align: justify"><a href="#">${post.getTitle()}</a></h3>
+                                                    <c:set var="shortDesc" value="${fn:substring(post.getRant(), 0, 250)}" />
+                                                    <p><i class="fa fa-quote-left"></i> &nbsp;${shortDesc}....</p>
+                                                </div><!-- list-content -->
+                                            </div><!--list-item -->								
+		                                  </div><!--list -->
+		                            </c:forEach> 
+		                             <br />
+		                          </c:when>        		                                
+	                          	<c:otherwise>
+	                              	<div class="list">
+		                                        <div class="list-item" style="">
+		                                            <div class="list-content">
+		                                                <p><i class="fa fa-quote-left"></i> &nbsp;No post found</p>
+		                                            </div><!-- list-content -->
+		                                        </div><!--list-item -->								
+		                            </div><!-- rants-list -->
+		                            <br />
+		                          </c:otherwise>
+	                        </c:choose>
+	                    </div><!-- clearfix -->		                                
+	                </div><!-- inner row -->                	
+                </div>  <!-- row -->
+         	</div> <!-- /container -->         
+        </div><!-- main -->        
 
             <!-- footer -->
             <footer id="footer" class="text-center">
@@ -170,9 +180,8 @@
               </div><!--social-->
 
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
-        </footer>
-        </div><!-- main -->   
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        </footer> 
+		<script src="${contextPath}/resources/js/jquery.min.js"></script>
 		<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
 </html>

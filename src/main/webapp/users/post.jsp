@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome ${pageContext.request.userPrincipal.name} - RantRoom</title>
+    <title>RantRoom | New Rant</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
@@ -56,14 +56,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="../home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
+                              <a class="navbar-brand" href="${contextPath}/home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
                             </div>
                         </div>    
                         <div class="col-sm-9">
                             <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="../home">Home</a></li>
+                                        <li><a href="${contextPath}/home">Home</a></li>
                                         <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
@@ -87,13 +87,28 @@
                                         </li>  
                                       </ul>
                                 </div><!--inner col-sm-8--> 
-                                <div class="col-sm-4">                                    
-<!--
-                                      <ul class="nav navbar-nav navbar-right menu">
-                                            <li><a href="${contextPath}/login">Login</a></li>
-                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
-                                      </ul>     
--->
+                                <div class="col-sm-4">
+                                	<ul class="nav navbar-nav navbar-right menu">
+                                      	<c:choose>
+                                      		<c:when test="${user != null}">
+                                      			<form id="logoutForm" method="POST" action="${contextPath}/logout">
+                                    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                				</form>
+	                                            <li class="dropdown">
+                                          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${user}<span class="caret"></span></a>
+                                            			<ul class="dropdown-menu sublist" role="menu">
+		                                                    <li><a href="${contextPath}/users/profile">Profile</a></li>		                                                    
+		                                                    <li><a href="${contextPath}/users/profile/settings">Settings</a></li>
+		                                                    <li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li> 
+                                            			</ul>
+                                        		</li>  	                                            
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<li><a href="${contextPath}/login">Login</a></li>
+	                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
+                                        	</c:otherwise>
+                                        </c:choose>	    
+                                      </ul>    
                                 </div><!--inner col-sm-4--> 
                             </div><!--inner-row-->
                         </div><!--outer col-sm-8-->   
@@ -103,50 +118,66 @@
 		</header>
         <div id="main">
             <div class="container" id="sub-content">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <h3 class="home-h2" style="text-align: left;"> Start Ranting Below</h3>
-                    </div>
-                    <div class="col-sm-4 menu">
-                        <ul class="">
-                            <li><a href="${contextPath}/users/welcome" style="text-align: left">Cancel</a></li>
-                            <li><a onclick="document.forms['logoutForm'].submit()" class="btn btn-default logout pull-right">Logout</a></li>
-                        </ul>
-                    </div>    
-                </div>
-                <div class="row">
-                    <div class="col-md-9">				
-                        <h5 class="">Racism and full names are not allowed (except celebs)</h5>
-                        <form:form method="POST" modelAttribute="postForm">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Rant Title</label>
-                                        <spring:bind path="title">
-                                            <div class="form-group ${status.error ? 'has-error' : ''}">
-                                                <form:input type="text" path="title" class="form-control" autofocus="true"></form:input>
-                                                <form:errors path="title"></form:errors>
-                                                <span>Give your rant a short descriptive Title.</span>           
-                                            </div>    
-                                        </spring:bind>    
-                                    </div>
-                                </div>
+            	<c:choose>
+            	   <c:when test="${postDesc == null }"> 
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3 class="home-h2" style="text-align: left;"> Start Ranting Below</h3>
                             </div>
+                            <div class="col-sm-3 col-sm-offset-3 menu">
+                                <p style="font-weight: 700"><a href="${contextPath}/users/profile">Cancel</a></p>
+                            </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <p style="font-size: 13px;font-weight: 700">Note: Racism and full names are not allowed (except celebs)</p>
+                                <form:form method="POST" modelAttribute="postForm">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Rant Title</label>
+                                                <spring:bind path="title">
+                                                    <div class="form-group ${status.error ? 'has-error' : ''}">
+                                                        <form:input type="text" path="title" class="form-control" autofocus="true"></form:input>
+                                                        <form:errors path="title"></form:errors>
+                                                        <span>Give your rant a short descriptive Title.</span>           
+                                                    </div>    
+                                                </spring:bind>    
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label>Rant</label>
-                                <spring:bind path="rant">
-                                    <form:textarea path="rant" class="form-control" required="required" rows="12"></form:textarea>
-                                    <form:errors path="rant"></form:errors>
-                                    <span>Text Only. HTML/Code will be saved as plain text.</span>                                    
-                                </spring:bind>    
-                            </div> 
-                            <button type="input" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Submit Your Rant</button>
-                        </form:form>
-                    </div><!--rant title -->                      
-                </div><!--rant desc -->
-            </div>
-            <!-- /container -->
+                                    <div class="form-group">
+                                        <label>Rant</label>
+                                        <spring:bind path="rant">
+                                            <form:textarea path="rant" class="form-control" required="required" rows="12"></form:textarea>
+                                            <form:errors path="rant"></form:errors>                                    
+                                        </spring:bind>    
+                                    </div> 
+                                    <button style="margin-bottom: 12px"type="submit" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Submit Your Rant</button>
+                                </form:form>
+                            </div><!--col-md-9 -->                                       
+                        </div><!--row -->
+                    </c:when>
+                    <c:otherwise>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <a style="text-align: left;font-size: 16px" href="${contextPath}/users/profile">&lt;&lt; Back</h3>
+                            </div>
+                            <div class="col-sm-3 col-sm-offset-3 menu">
+                                <p style="font-weight: 700"><a href="${contextPath}/users/profile">Edit</a></p>
+                                <p style="font-weight: 700"><a href="${contextPath}/users/profile">Delete</a></p>
+                                
+                            </div>    
+                        </div>
+                        <div class="rant rant-details rant-sm">
+
+                            <h3 class="rantTitle">${postDesc.getTitle()}</h3>
+                            <p class="fa fa-quote-left text-quote-icon text-quote-icon-left" style="margin-bottom: 24px">${postDesc.getRant()}</p>    
+                        </div> 
+                    </c:otherwise>
+                </c:choose> 
+            </div> <!-- /container -->
             <!-- footer -->
             <footer id="footer" class="text-center">
               <div class="container social">
@@ -174,7 +205,7 @@
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
         </div>    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="${contextPath}/resources/js/jquery.min.js"></script>
         <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
 </html>

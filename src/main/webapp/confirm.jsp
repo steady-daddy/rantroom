@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Confirm Account</title>
+        <title>RantRoom | Confirm Account</title>
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
@@ -109,7 +109,7 @@
                     <div class="col-sm-8 col-sm-offset-2">
                         <p>Thanks for joining RantRoom. Just one more step and you'll be ready to Rant.
                         We have sent you a confirmation mail. Kindly click on the link given in mail to get verified and get started.</p>
-                        <p><a href="home.jsp">Return to Homepage</a></p>
+                        <p><a href="${contextPath}/home">Return to Homepage</a></p>
                     </div>
                 </div>                
             </div>
@@ -141,7 +141,7 @@
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
         </div>    
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="${contextPath}/resources/js/jquery.min.js"></script>
         <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
     </body>
 </html>

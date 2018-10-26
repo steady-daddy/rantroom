@@ -13,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>RantRoom | Rant Posted</title>
+        <title>RantRoom | Account Verification</title>
 
         <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
         <link href="${contextPath}/resources/css/style.css" rel="stylesheet">
@@ -55,14 +55,14 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                               </button>
-                              <a class="navbar-brand" href="../home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
+                              <a class="navbar-brand" href="./home"><img class="logo" alt="RantRoom logo" src="${contextPath}/resources/images/rantroomlogo_bl.png" /></a>
                             </div>
                         </div>    
                         <div class="col-sm-9">
                             <div class="row navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false">                                
                                 <div class="col-sm-8 menu">    
                                       <ul class="nav navbar-nav">
-                                        <li><a href="../home">Home</a></li>
+                                        <li><a href="home">Home</a></li>
                                         <li></li>
                                         <li><a href="#">Rants</a></li> 
                                         <li class="dropdown">
@@ -87,27 +87,10 @@
                                       </ul>
                                 </div><!--inner col-sm-8--> 
                                 <div class="col-sm-4">                                    
-									<ul class="nav navbar-nav navbar-right menu">
-                                      	<c:choose>
-                                      		<c:when test="${user != null}">
-                                      			<form id="logoutForm" method="POST" action="${contextPath}/logout">
-                                    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                				</form>
-	                                            <li class="dropdown">
-                                          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${user}<span class="caret"></span></a>
-                                            			<ul class="dropdown-menu sublist" role="menu">
-		                                                    <li><a href="${contextPath}/users/profile">Profile</a></li>		                                                    
-		                                                    <li><a href="${contextPath}/users/profile/settings">Settings</a></li>
-		                                                    <li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li> 
-                                            			</ul>
-                                        		</li>  	                                            
-                                        	</c:when>
-                                        	<c:otherwise>
-                                        		<li><a href="${contextPath}/login">Login</a></li>
-	                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
-                                        	</c:otherwise>
-                                        </c:choose>	    
-                                      </ul>   
+                                      <ul class="nav navbar-nav navbar-right menu">
+                                            <li><a href="${contextPath}/login">Login</a></li>
+                                            <li><a class="home-links" href="${contextPath}/registration">Sign Up</a></li>
+                                      </ul>     
                                 </div><!--inner col-sm-4--> 
                             </div><!--inner-row-->
                         </div><!--outer col-sm-8-->   
@@ -118,17 +101,21 @@
         <div id="main">
             <div class="container" id="sub-content">                
                 <div class="row">
-                    <div class="col-sm-6 col-sm-offset-2">
+                    <div class="col-sm-8 col-sm-offset-2">
 
-                        <p>${verifyPost}</p>
-                        <p class = "menu" style="font-weight: 700"><a href="${contextPath}/users/profile">Return to Timeline</a></p>
-                    </div>
-                    <div class="col-sm-4 menu">
-                    	<p style="font-weight: 700"><a href="${contextPath}/users/post">Create another rant</a></p>
+                        <p>${verifyUser}</p>
+                        <p><a href="home.jsp">Return to Homepage</a></p>
                     </div>
                 </div>
 
-                
+                <!--<c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+
+                    <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+
+                </c:if>-->
 
             </div>
             <!-- /container -->
@@ -159,7 +146,7 @@
               <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
         </footer>
         </div>    
-        <script src="${contextPath}/resources/js/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
