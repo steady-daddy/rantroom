@@ -1,40 +1,53 @@
 package com.rantsroom.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rantsroom.model.Post;
 import com.rantsroom.model.User;
-import com.rantsroom.model.UserProfile;
 import com.rantsroom.service.PostServiceImpl;
 import com.rantsroom.service.UserService;
 
 @Controller
 public class UserProfileController {
 	
+	@Value("${file.upload-dir}")
+	private String uploadFolderPath;
+	@Value("${server.address}")
+	private String serverAddress;
+	
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService;
     @Autowired
     private PostServiceImpl postServiceImpl;
-//    @Autowired
-//    private FileStorageService fileStorageService;
+    
+  //Save the uploaded file to this folder
+    //private static String UPLOADED_FOLDER = "./upload";
     
     @RequestMapping(value = "/users/profile", method = RequestMethod.GET)
     public String welcome(Model model, Principal principal) {
     	
+    	System.out.println("UPLOAD_FOLDER_PATH: "+uploadFolderPath);
 		String currentUser = null;
     	try {
 			currentUser = principal.getName();
@@ -90,18 +103,42 @@ public class UserProfileController {
         return "users/profile";
     }
 	
-		/*@RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
-	    public String uploadFile(@RequestParam("file") MultipartFile file, Model model) {
-	        String filePath = fileStorageService.storeFile(file);
-	        model.addAttribute("filePath", filePath);
-	        return "";
-	        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-	                .path("/downloadFile/")
-	                .path(fileName)
-	                .toUriString();
-	        
-	        return new UserProfile(fileName, fileDownloadUri,
-	                file.getContentType(), file.getSize());
-	    }
-*/
+	@RequestMapping(value = "/users/editProfile", method = RequestMethod.GET)
+    public String uploadFile(//@RequestParam("file") MultipartFile file,
+    		Model model,
+    		RedirectAttributes redirectAttributes, Principal principal) {
+		
+		String currentUser = null;
+    	try {
+			currentUser = principal.getName();
+			logger.info("CURRENT LOGGED-IN USER: ",currentUser);
+    	} catch (NullPointerException e) {
+			logger.info("No user logged in");
+		}
+    	User user = userService.findByUsername(currentUser);
+    	model.addAttribute("user", user);		
+		
+		System.out.println("server.address: "+serverAddress);
+		
+		/*if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+            return "redirect:uploadStatus";
+        }
+
+        try {
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(uploadFolderPath + file.getOriginalFilename());
+            Files.write(path, bytes);
+
+            redirectAttributes.addFlashAttribute("message",
+                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+		
+        return "users/editProfile";
+    }
 }
