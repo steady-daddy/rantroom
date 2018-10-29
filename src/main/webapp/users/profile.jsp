@@ -140,8 +140,8 @@
 	                    <div class="col-sm-4">
 	                        <ul class="nav navbar-nav navbar-right menu menu-right">
 	                            <li><a href="${contextPath}/users/post" class="btn">Create Rant</a></li>
-	                            <li><a href = "${contextPath}/users/editProfile" class="btn">Edit Profile</a></li>
-	                        </ul>
+	                            <li><a href = "${contextPath}/users/editProfile/${user.getId()}" class="btn">Edit Profile</a></li>
+	                        </ul>'/appel/edit/' + ${appel.id}
 	                    </div>    
 	                </div>    
 	                

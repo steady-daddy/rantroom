@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,12 +105,17 @@ public class UserProfileController {
         return "users/profile";
     }
 	
-	@RequestMapping(value = "/users/editProfile", method = RequestMethod.GET)
-    public String uploadFile(//@RequestParam("file") MultipartFile file,
-    		Model model,
-    		RedirectAttributes redirectAttributes, Principal principal) {
+	@RequestMapping(value = "/users/editProfile/{id}", method = RequestMethod.GET)
+    public String uploadFile(@PathVariable("id") Long id, Model model) {
 		
-		String currentUser = null;
+		logger.info("User object based on id "+id+" : \n"+userService.findById(id).get().toString());
+		model.addAttribute("editUser", userService.findById(id).get());
+	   
+		
+		
+		
+		
+		/*String currentUser = null;
     	try {
 			currentUser = principal.getName();
 			logger.info("CURRENT LOGGED-IN USER: ",currentUser);
@@ -118,9 +125,8 @@ public class UserProfileController {
     	User user = userService.findByUsername(currentUser);
     	model.addAttribute("user", user);		
 		
-		System.out.println("server.address: "+serverAddress);
 		
-		/*if (file.isEmpty()) {
+		if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:uploadStatus";
         }

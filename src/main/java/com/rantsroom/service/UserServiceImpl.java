@@ -11,6 +11,7 @@ import com.rantsroom.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -53,5 +54,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByConfirmationToken(String confirmationToken) {
 		return userRepository.findByConfirmationToken(confirmationToken);
+	}
+
+	@Override
+	public Optional<User> findById(Long Id) {
+		
+		return userRepository.findById(Id);
 	}
 }

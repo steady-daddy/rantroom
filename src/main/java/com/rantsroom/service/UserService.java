@@ -1,5 +1,7 @@
 package com.rantsroom.service;
 
+import java.util.Optional;
+
 import com.rantsroom.model.User;
 
 public interface UserService {
@@ -9,4 +11,5 @@ public interface UserService {
     User findByUsername(String username);
     User findByEmail(String email);
     User findByConfirmationToken(String confirmationToken);
+    Optional<User> findById(Long Id);
 }
