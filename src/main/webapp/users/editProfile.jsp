@@ -127,14 +127,22 @@
 			    <h1>Edit Profile</h1>
 			  	<hr>
 				<div class="row">
-			      <!-- left column -->
+			      <!-- left column --> 
 			      <div class="col-md-3">
-			        <div class="text-center">
+			      <img src="${contextPath}/resources/images/no-dp-boy.jpg" class="avatar img-circle" alt="avatar" height="150" width="150">
+			      	<form action="myform.cgi">
+				      	<label> Update your Profile photo</label> 
+			      		<!-- <input type="file" name="fileupload" value="fileupload" id="fileupload"> -->
+			      		<input type="file" class="custom-file-input" value="fileupload">
+				      	<input type="submit" value="Upload" class="custom-file-input" style="margin-top: 12px"> 
+			      	</form>
+
+			        <%-- <div class="text-center">
 			          <img src="${contextPath}/resources/images/no-dp-boy.jpg" class="avatar img-circle" alt="avatar" height="150" width="150">
-			          <h6>Upload a different photo...</h6>
+			          <h6>Change Avatar</h6>
 			          
 			          <input type="file" class="form-control">
-			        </div>
+			        </div> --%>
 			      </div>
 			      
 			      <!-- edit form column -->
@@ -209,6 +217,35 @@
 			  </div>
 				<hr>	
 			</div> <!--container -->
+			<!-- footer -->
+            <footer id="footer" class="text-center">
+              <div class="container social">
+
+                <div class="col-sm-12">                
+                  <a href="#" class="icon-circle fb" target="_blank">
+                    <img class="logo" alt="Facebook" src="${contextPath}/resources/social/facebook_transparent-1c6a690dcde061958f50f712404c764613cc193d3f69e81734c8c9a7f36131e4.png" />
+                  </a>
+
+                  <a href="#" class="icon-circle tw" target="_blank">
+                    <img class="logo" alt="Twitter" src="${contextPath}/resources/social/twitter_transparent-39f60ddc31bce0d3e3d6ae72af7fbe74dc95e01b7d7a6f66cc38efabda3bb6da.png" />
+                  </a>
+
+                  <a href="#" class="icon-circle gl" target="_blank">
+                    <img class="logo" alt="Google Plus" src="${contextPath}/resources/social/gplus_transparent-fab632559c47bada047b0ff2cb7b8880a10836d08db04c7cdae2e3d3abe474e1.png" />
+                  </a>
+
+                    <a href="#" class="icon-circle pt" target="_blank">
+                    <img class="logo" alt="Pinterest" src="${contextPath}/resources/social/pinterest_transparent-a58a9baa98ec9a2e4fed6d4ab7ffdb69bc607c82649a486544b2b5dab03364ef.png" />
+                   </a>
+                </div>
+
+              </div><!--social-->
+
+              <p id="copyright">&copy; 2018 Team RantRoom. All rights reserved | Designed by <a href="http://www.khansaad.com/" target="_blank" >Saad </a>| Mentored by <a href="http://www.roosnam.com/" target="_blank" >Mansoor</a></p>
+        </footer>
 		</div> <!--main -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${contextPath}/resources/js/bootstrap-filestyle.min.js"> </script>
 	</body>
 </html>
