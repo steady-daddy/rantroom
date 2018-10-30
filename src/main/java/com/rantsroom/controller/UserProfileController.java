@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +31,8 @@ import com.rantsroom.model.Post;
 import com.rantsroom.model.User;
 import com.rantsroom.service.PostServiceImpl;
 import com.rantsroom.service.UserService;
+import com.rantsroom.validator.FormValidator;
+import com.rantsroom.validator.UserValidator;
 
 @Controller
 public class UserProfileController {
@@ -42,7 +48,8 @@ public class UserProfileController {
     private UserService userService;
     @Autowired
     private PostServiceImpl postServiceImpl;
-    
+    @Autowired
+    private UserValidator userValidator;
   //Save the uploaded file to this folder
     //private static String UPLOADED_FOLDER = "./upload";
     
@@ -66,56 +73,75 @@ public class UserProfileController {
         
         return "users/profile";
     }
-	@RequestMapping(value = "/users/profile/edit", method = RequestMethod.GET)
-    public String editProfile(Model model,Principal principal) {
+    
+	
+	@RequestMapping(value = "/users/editProfile/{id}", method = RequestMethod.GET)
+    public String editProfile(@PathVariable("id") Long id, Model model) {
 		
-
+		logger.info("User object based on id "+id+" : \n"+userService.findById(id).get().toString());
+		model.addAttribute("userForm", userService.findById(id).get());
+	   
+		return "users/editProfile";
+    }
+	@RequestMapping(value = "/users/editProfile", method = RequestMethod.POST)
+    public String editProfile(@ModelAttribute("userForm") User userForm,
+    		BindingResult bindingResult, Model model, HttpServletRequest request) {
+		
+		userValidator.validate(userForm, bindingResult);
+		if (bindingResult.hasErrors()) {
+            return "users/editProfile";
+        }
+		else {
+			userService.save(userForm);
+			model.addAttribute("profileUpdated", "Your profile is updated succesfully");
+			return "users/profile";
+		}
+		
+		
+		/*
 		String currentUser = null;
-    	try {
+		try {
 			currentUser = principal.getName();
 			logger.info("CURRENT LOGGED-IN USER: ",currentUser);
-    	} catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			logger.info("No user logged in");
 		}
-    	User user = userService.findByUsername(currentUser);
-    	model.addAttribute("user", user);
+		User user = userService.findByUsername(currentUser);
+		model.addAttribute("user", user);
 		model.addAttribute("info", "This part is under construction. Please check back later.");
-    	/*
     	User user = userService.findByUsername(currentUser.getUsername());
     	model.addAttribute("user", user);
     	List<Post> posts = postServiceImpl.findAllById(user.getId());
     	model.addAttribute("posts", posts);*/
-        
-        return "users/profile";
-    }
+		
+	}
+	
 	@RequestMapping(value = "/users/profile/settings", method = RequestMethod.GET)
-    public String profileSettings(Model model,Principal principal) {
+	public String profileSettings(Model model,Principal principal) {
 		
 		String currentUser = null;
-    	try {
+		try {
 			currentUser = principal.getName();
 			logger.info("CURRENT LOGGED-IN USER: ",currentUser);
-    	} catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			logger.info("No user logged in");
 		}
-    	User user = userService.findByUsername(currentUser);
-    	model.addAttribute("user", user);
+		User user = userService.findByUsername(currentUser);
+		model.addAttribute("user", user);
 		model.addAttribute("info", "This part is under construction. Please check back later.");    	
-        
-        return "users/profile";
-    }
-	
-	@RequestMapping(value = "/users/editProfile/{id}", method = RequestMethod.GET)
-    public String uploadFile(@PathVariable("id") Long id, Model model) {
 		
-		logger.info("User object based on id "+id+" : \n"+userService.findById(id).get().toString());
-		model.addAttribute("editUser", userService.findById(id).get());
-	   
-		
-		
-		
-		
-		/*String currentUser = null;
+		return "users/profile";
+	}
+}
+
+
+
+
+
+
+
+
+/*String currentUser = null;
     	try {
 			currentUser = principal.getName();
 			logger.info("CURRENT LOGGED-IN USER: ",currentUser);
@@ -144,7 +170,3 @@ public class UserProfileController {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-		
-        return "users/editProfile";
-    }
-}

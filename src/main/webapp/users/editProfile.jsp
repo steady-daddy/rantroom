@@ -89,9 +89,9 @@
                                 <div class="col-sm-4">
                                 	<ul class="nav navbar-nav navbar-right">
                                       	<c:choose>
-                                      		<c:when test="${user != null}">
+                                      		<c:when test="${userForm != null}">
 	                                            <li class="dropdown">
-                                          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${user.getUsername()}<span class="caret"></span></a>
+                                          			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">${userForm.getUsername()}<span class="caret"></span></a>
                                             			<ul class="dropdown-menu sublist" role="menu">
 		                                                    <li><a href="${contextPath}/users/profile">Profile</a></li>		                                                    
 		                                                    <li><a href="${contextPath}/users/profile/settings">Settings</a></li>
@@ -153,8 +153,70 @@
 			          This is an <strong>.alert</strong>. Use this to show important messages to the user.
 			        </div> -->
 			        <h3>Personal info</h3>
-			        
-			        <form class="form-horizontal" role="form">
+			        <div class="col-sm-3 col-sm-offset-3 menu">
+                        <p style="font-weight: 700"><a href="${contextPath}/users/profile">Cancel</a></p>
+                    </div>
+			        <div class="login-form">
+                            <form:form method="POST" modelAttribute="userForm">
+                                <div>
+                                    <label>USERNAME:</label>
+                                    <spring:bind path="username">
+                                        <div class="form-group">
+                                            <input type="text" path="username" value="${userForm.getUsername()}" class="form-control" autofocus="true" readonly></input>                                            
+                                        </div>
+                                    </spring:bind>
+                                </div>
+                                <div>
+                                    <label>FIRST NAME:</label>
+                                    <spring:bind path="firstname">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <form:input type="text" path="firstname" value="${userForm.getFirstname()}" class="form-control" autofocus="true"></form:input>
+                                            <form:errors path="firstname"></form:errors>
+                                        </div>
+                                    </spring:bind>
+                                </div>
+                                <div>
+                                    <label>LAST NAME:</label>
+                                    <spring:bind path="lastname">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <form:input type="text" path="lastname" value="${userForm.getLastname()}" class="form-control" autofocus="true"></form:input>
+                                        </div>
+                                    </spring:bind>
+                                </div>
+                                <div>
+                                    <label>EMAIL:</label>
+                                    <spring:bind path="email">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <input type="text" path="email" value="${userForm.getEmail()}" class="form-control" autofocus="true" readonly></input>                                            
+                                        </div>
+                                    </spring:bind>
+                                </div>
+                                <div>
+                                    <label>PASSWORD:</label>
+                                    <spring:bind path="password">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <form:input type="password" path="password" value="${userForm.getPassword()}" class="form-control"></form:input>
+                                            <form:errors path="password"></form:errors>
+                                        </div>
+                                    </spring:bind>
+                                </div>
+                                <div>
+                                    <label>CONFIRM PASSWORD:</label>
+                                    <spring:bind path="passwordConfirm">
+                                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                                            <form:input type="password" path="passwordConfirm" value="${userForm.getPassword()}" class="form-control"></form:input>
+                                            <form:errors path="passwordConfirm"></form:errors>
+                                        </div>
+                                    </spring:bind>
+                                </div>    
+                               	<div class="form-group">
+						            <label class="col-md-3 control-label"></label>
+						            <div class="col-md-8">
+						              <input type="button" class="btn btn-primary" value="Save Changes">						              						              
+						            </div>
+					          	</div>
+                            </form:form>
+			        <%-- <form class="form-horizontal" role="form">
 			          <div class="form-group">
 			            <label class="col-lg-3 control-label">Username:</label>
 			            <div class="col-lg-8">
@@ -172,20 +234,8 @@
 			            <div class="col-lg-8">
 			              <input class="form-control" type="text" value="${user.getLastname()}">
 			            </div>
-			          </div>
+			          </div>			          
 			          
-			          <div class="form-group">
-			            <label class="col-lg-3 control-label">City:</label>
-			            <div class="col-lg-8">
-			              <input class="form-control" type="text" value="">
-			            </div>
-			          </div>
-			          <div class="form-group">
-			            <label class="col-lg-3 control-label">Country:</label>
-			            <div class="col-lg-8">
-			              <input class="form-control" type="text" value="">
-			            </div>
-			          </div>
 			          <div class="form-group">
 			            <label class="col-lg-3 control-label">Email:</label>
 			            <div class="col-lg-8">
@@ -212,7 +262,7 @@
 			              <input type="reset" class="btn btn-default" value="Cancel">
 			            </div>
 			          </div>
-			        </form>
+			        </form> --%>
 			      </div>
 			  </div>
 				<hr>	

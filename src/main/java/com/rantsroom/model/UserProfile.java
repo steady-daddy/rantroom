@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class UserProfile {
@@ -14,11 +15,17 @@ public class UserProfile {
 	private Long id;
 	private String city;
 	private String country;
+	
 	//Profile photo attributes
+	@Transient
 	private String fileName;
+	@Transient
     private String fileDownloadUri;
+	@Transient
     private String fileType;
+	@Transient
     private long size;
+	@Transient
     private String uploadDir;
 	
 	@OneToOne

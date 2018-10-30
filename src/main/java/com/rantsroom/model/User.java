@@ -133,5 +133,12 @@ public class User extends AuditModel{
 
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
+				+ ", password=" + password + ", email=" + email + ", posts=" + posts + ", roles=" + roles
+				+ ", userProfile=" + userProfile + "]";
 	}	
 }

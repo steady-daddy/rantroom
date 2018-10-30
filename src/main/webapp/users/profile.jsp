@@ -130,18 +130,32 @@
 	                    <div class="col-sm-4" style="margin:14px 0">  
 							<img src="${contextPath}/resources/images/no-dp-boy.jpg" height="150" width="150" alt="Upload image">
 	                    </div>
-	                    <div class="col-sm-4" style="margin:24px 0">				            
-			                <div class="name_group">
-			                  <h1><strong style="color: #23527c;">${user.getFirstname()}</strong>
-			                  <small>@${user.getUsername()}</small>
-			                  </h1>				                  
-			                </div><!--name_group-->				              		
-						</div><!--_two-->
+	                    <c:choose>
+	          				<c:when test="${profileUpdated == null}">
+			                    <div class="col-sm-4" style="margin:24px 0">				            
+					                <div class="name_group">
+					                  <h1><strong style="color: #23527c;">${user.getFirstname()}</strong>
+					                  <small>@${user.getUsername()}</small>
+					                  </h1>				                  
+					                </div><!--name_group-->				              		
+								</div><!--_two-->
+							</c:when>
+							<c:otherwise>
+								<div class="col-sm-4" style="margin:12px 0">
+									<p>${contextPath}</p>				            
+					                <div class="name_group">
+					                  <h1><strong style="color: #23527c;">${user.getFirstname()}</strong>
+					                  <small>@${user.getUsername()}</small>
+					                  </h1>				                  
+					                </div><!--name_group-->				              		
+								</div><!--_two-->
+							</c:otherwise>
+						</c:choose>		
 	                    <div class="col-sm-4">
 	                        <ul class="nav navbar-nav navbar-right menu menu-right">
 	                            <li><a href="${contextPath}/users/post" class="btn">Create Rant</a></li>
 	                            <li><a href = "${contextPath}/users/editProfile/${user.getId()}" class="btn">Edit Profile</a></li>
-	                        </ul>'/appel/edit/' + ${appel.id}
+	                        </ul>
 	                    </div>    
 	                </div>    
 	                

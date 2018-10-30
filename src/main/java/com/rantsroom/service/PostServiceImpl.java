@@ -22,7 +22,6 @@ public class PostServiceImpl extends PostRepositoryImpl implements PostService {
 	public void save(Post post) {
 		
 		postRepository.save(post);
-
 	}
 
 	@Override
