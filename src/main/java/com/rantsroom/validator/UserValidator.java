@@ -1,6 +1,8 @@
 package com.rantsroom.validator;
 
 import org.apache.commons.validator.EmailValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -13,6 +15,8 @@ import com.rantsroom.service.UserService;
 
 @Component
 public class UserValidator implements Validator {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService;
 
@@ -25,15 +29,19 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
     	
         User user = (User) o;
-        
+        logger.info("User data: ",user.getFirstname());
         //username validation
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "error.usernameEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
-        }
-        if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
-        }
+        try {
+			if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
+			    errors.rejectValue("username", "Size.userForm.username");
+			}
+			if (userService.findByUsername(user.getUsername()) != null) {
+			    errors.rejectValue("username", "Duplicate.userForm.username");
+			}
+		} catch (NullPointerException npe) {
+			logger.error("Username not found",user.getUsername());
+		}
         
         //first name validation
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstname", "NotEmpty");        

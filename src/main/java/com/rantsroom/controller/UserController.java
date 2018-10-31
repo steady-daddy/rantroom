@@ -74,12 +74,12 @@ public class UserController {
 		    userForm.setEmail_confirmed(false);
 		    
 		    // Generate random 36-character string token for confirmation link
-		    	userForm.setConfirmationToken(UUID.randomUUID().toString());
+		    	//userForm.setConfirmationToken(UUID.randomUUID().toString());
 		    
 		    userService.save(userForm);
 		    
 		    //Sending verification token via mail
-		    sendConfirmationMail(request,userForm);
+		    //sendConfirmationMail(request,userForm);
 		    
 		    return "redirect:/confirm";
         }

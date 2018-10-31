@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -83,19 +84,21 @@ public class UserProfileController {
 	   
 		return "users/editProfile";
     }
-	@RequestMapping(value = "/users/editProfile", method = RequestMethod.POST)
-    public String editProfile(@ModelAttribute("userForm") User userForm,
+	@RequestMapping(value = "/users/editProfile/{id}", method = RequestMethod.POST)
+    public String editProfile(@PathVariable("id") Long id, @ModelAttribute("userForm") User userForm,
     		BindingResult bindingResult, Model model, HttpServletRequest request) {
 		
-		userValidator.validate(userForm, bindingResult);
+		/*userValidator.validate(userForm, bindingResult);
 		if (bindingResult.hasErrors()) {
             return "users/editProfile";
         }
-		else {
+		else {*/
+			
+			logger.info("USER Form : ",userForm.toString());
 			userService.save(userForm);
 			model.addAttribute("profileUpdated", "Your profile is updated succesfully");
 			return "users/profile";
-		}
+		//}
 		
 		
 		/*

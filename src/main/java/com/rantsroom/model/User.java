@@ -39,6 +39,10 @@ public class User extends AuditModel{
 	}	
 
 	public void setPosts(List<Post> posts) {
+		
+		this.posts.clear();
+	   // this.posts.addAll(posts);
+		
 		this.posts = posts;
 	}
 	
@@ -138,7 +142,6 @@ public class User extends AuditModel{
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", password=" + password + ", email=" + email + ", posts=" + posts + ", roles=" + roles
-				+ ", userProfile=" + userProfile + "]";
+				+ ", password=" + password + ", email=" + email;
 	}	
 }

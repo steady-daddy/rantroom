@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> <%-- imports function tags from JSTL, prefix "fn"--%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -153,69 +154,69 @@
 			          This is an <strong>.alert</strong>. Use this to show important messages to the user.
 			        </div> -->
 			        <h3>Personal info</h3>
-			        <div class="col-sm-3 col-sm-offset-3 menu">
+			        <%-- <div class="col-sm-3 col-sm-offset-3 menu">
                         <p style="font-weight: 700"><a href="${contextPath}/users/profile">Cancel</a></p>
-                    </div>
-			        <div class="login-form">
-                            <form:form method="POST" modelAttribute="userForm">
-                                <div>
-                                    <label>USERNAME:</label>
-                                    <spring:bind path="username">
-                                        <div class="form-group">
-                                            <input type="text" path="username" value="${userForm.getUsername()}" class="form-control" autofocus="true" readonly></input>                                            
-                                        </div>
-                                    </spring:bind>
+                    </div> --%>
+			        
+                    <form:form method="POST" modelAttribute="userForm" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">USERNAME:</label>
+                            <spring:bind path="username">                       
+	                            <div class="col-lg-8 form-group">
+	                                <input type="text" value="${userForm.getUsername()}" class="form-control" readonly></input>                                            
+	                            </div>
+                       		</spring:bind>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">FIRST NAME:</label>
+                            <spring:bind path="firstname">
+                                <div class="col-lg-8 form-group ${status.error ? 'has-error' : ''}">
+                                    <form:input type="text" path="firstname" value="${userForm.getFirstname()}" class="form-control" autofocus="true"></form:input>
+                                    <form:errors path="firstname"></form:errors>
                                 </div>
-                                <div>
-                                    <label>FIRST NAME:</label>
-                                    <spring:bind path="firstname">
-                                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                                            <form:input type="text" path="firstname" value="${userForm.getFirstname()}" class="form-control" autofocus="true"></form:input>
-                                            <form:errors path="firstname"></form:errors>
-                                        </div>
-                                    </spring:bind>
+                            </spring:bind>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">LAST NAME:</label>
+                            <spring:bind path="lastname">
+                                <div class="col-lg-8 form-group ${status.error ? 'has-error' : ''}">
+                                    <form:input type="text" path="lastname" value="${userForm.getLastname()}" class="form-control" autofocus="true"></form:input>
                                 </div>
-                                <div>
-                                    <label>LAST NAME:</label>
-                                    <spring:bind path="lastname">
-                                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                                            <form:input type="text" path="lastname" value="${userForm.getLastname()}" class="form-control" autofocus="true"></form:input>
-                                        </div>
-                                    </spring:bind>
+                            </spring:bind>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">EMAIL:</label>
+                            <spring:bind path="email">                        
+	                            <div class="col-lg-8 form-group">
+	                                <input type="text" value="${userForm.getEmail()}" class="form-control" 	readonly></input>                                            
+	                            </div>
+                   			</spring:bind>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">PASSWORD:</label>
+                            <spring:bind path="password">
+                                <div class="col-lg-8 form-group ${status.error ? 'has-error' : ''}">
+                                    <form:input type="password" path="password" value="${userForm.getPasswordConfirm()}" class="form-control"></form:input>
+                                    <form:errors path="password"></form:errors>
                                 </div>
-                                <div>
-                                    <label>EMAIL:</label>
-                                    <spring:bind path="email">
-                                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                                            <input type="text" path="email" value="${userForm.getEmail()}" class="form-control" autofocus="true" readonly></input>                                            
-                                        </div>
-                                    </spring:bind>
+                            </spring:bind>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">CONFIRM PASSWORD:</label>
+                            <spring:bind path="passwordConfirm">
+                                <div class="col-lg-8 form-group ${status.error ? 'has-error' : ''}">
+                                    <form:input type="password" path="passwordConfirm" value="${userForm.getPasswordConfirm()}" class="form-control"></form:input>
+                                    <form:errors path="passwordConfirm"></form:errors>
                                 </div>
-                                <div>
-                                    <label>PASSWORD:</label>
-                                    <spring:bind path="password">
-                                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                                            <form:input type="password" path="password" value="${userForm.getPassword()}" class="form-control"></form:input>
-                                            <form:errors path="password"></form:errors>
-                                        </div>
-                                    </spring:bind>
-                                </div>
-                                <div>
-                                    <label>CONFIRM PASSWORD:</label>
-                                    <spring:bind path="passwordConfirm">
-                                        <div class="form-group ${status.error ? 'has-error' : ''}">
-                                            <form:input type="password" path="passwordConfirm" value="${userForm.getPassword()}" class="form-control"></form:input>
-                                            <form:errors path="passwordConfirm"></form:errors>
-                                        </div>
-                                    </spring:bind>
-                                </div>    
-                               	<div class="form-group">
-						            <label class="col-md-3 control-label"></label>
-						            <div class="col-md-8">
-						              <input type="button" class="btn btn-primary" value="Save Changes">						              						              
-						            </div>
-					          	</div>
-                            </form:form>
+                            </spring:bind>
+                        </div>    
+                       	<div class="form-group">
+				          <label class="col-md-3 control-label"></label>
+				          <div class="col-md-8">
+				            <button type="submit" class="btn btn-primary">Save Changes</button>						              						              
+				          </div>
+				       	</div>
+                    </form:form>
 			        <%-- <form class="form-horizontal" role="form">
 			          <div class="form-group">
 			            <label class="col-lg-3 control-label">Username:</label>
