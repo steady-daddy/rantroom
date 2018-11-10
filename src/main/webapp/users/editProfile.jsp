@@ -130,13 +130,13 @@
 				<div class="row">
 			      <!-- left column --> 
 			      <div class="col-md-3">
-			      <img src="${contextPath}/resources/images/no-dp-boy.jpg" class="avatar img-circle" alt="avatar" height="150" width="150">
-			      	<form action="myform.cgi">
-				      	<label> Update your Profile photo</label> 
-			      		<!-- <input type="file" name="fileupload" value="fileupload" id="fileupload"> -->
-			      		<input type="file" class="custom-file-input" value="fileupload">
-				      	<input type="submit" value="Upload" class="custom-file-input" style="margin-top: 12px"> 
-			      	</form>
+                      <img src="${contextPath}/resources/images/no-dp-boy.jpg" class="avatar img-circle" alt="avatar" height="150" width="150">
+                      <form:form action="/upload" enctype="multipart/form-data" method = "post">
+                        <label> Update your Profile photo</label>
+                        <!-- <input type="file" name="fileupload" value="fileupload" id="fileupload"> -->
+                        <input type="file" name="file" class="custom-file-input" />
+                        <input type="submit" value="Upload" class="custom-file-input" style="margin-top: 12px" />
+                      </form:form>
 
 			        <%-- <div class="text-center">
 			          <img src="${contextPath}/resources/images/no-dp-boy.jpg" class="avatar img-circle" alt="avatar" height="150" width="150">
@@ -149,7 +149,7 @@
 			      <!-- edit form column -->
 			      <div class="col-md-9 personal-info">
 			        <!-- <div class="alert alert-info alert-dismissable">
-			          <a class="panel-close close" data-dismiss="alert">×</a> 
+			          <a class="panel-close close" data-dismiss="alert">ï¿½</a> 
 			          <i class="fa fa-coffee"></i>
 			          This is an <strong>.alert</strong>. Use this to show important messages to the user.
 			        </div> -->
